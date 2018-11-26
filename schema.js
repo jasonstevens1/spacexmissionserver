@@ -44,6 +44,14 @@ const RootQuery = new GraphQLObjectType({
           .then(res => res.data);
       }
     },
+    upcoming_launches: {
+      type: new GraphQLList(LaunchType),
+      resolve(parent, args) {
+        return axios
+          .get("https://api.spacexdata.com/v3/launches/upcoming")
+          .then(res => res.data);
+      }
+    },
     launch: {
       type: LaunchType,
       args: {
